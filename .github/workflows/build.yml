@@ -27,6 +27,8 @@ jobs:
         run: |
           pip install -r requirements.txt
           make download_releases generate
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
