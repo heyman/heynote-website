@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Heynote</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+     <script async src="js/theme-toggle.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo-links">
+            <h1 class="logo">Heynote</h1>
+            <ul class="links">
+              <li><a href="#downloads">Downloads</a></li>
+              <li>
+                <a href="https://github.com/heyman/heynote/">Source Code<i class="icon-github"></i></a>
+              </li>
+            </ul>
+          </div>
+
+          <h2>A dedicated scratchpad for developers</h2>
+
+          <div class="download-buttons">
+            <div class="button-container">
+              <a href="#" class="button apple">
+                Download
+                <span class="platform">Mac Universal</span>
+              </a>
+            </div>
+
+            <a href="#downloads" class="more">More versions</a>
+            
+            <label for="theme-toggle-checkbox" class="theme-toggle" id="theme-toggle">
+              <input type="checkbox" class="checkbox" id="theme-toggle-checkbox" />
+              <div class="slider">
+                <div class="moon"></div>
+                <div class="sun"></div>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="screenshot-container">
+          <picture>
+            <source srcset="img/dark/screenshot.png" media="(prefers-color-scheme: dark)">
+            <!-- media attribute can be set to "none" or "all" to manually force the image -->
+            <img src="img/light/screenshot.png" alt="Screenshot" class="screenshot">
+          </picture>
+        </div>
+      </div>
+      <i class="bg-container">
+        <i class="bg"></i>
+      </i>
+    </header>
+
+    <section class="features">
+      <div class="feature">
+        <div class="text">
+          <h3>One buffer, many blocks</h3>
+          <p>
+            At it's core, Heynote is a large, persistent text buffer divided into blocks. 
+            Creating a new block is as easy as pressing Ctrl-Enter, and pressing Ctrl-A within 
+            a block selects the content of just that block.
+          </p>
+          <p>
+            Works great for that Slack message you don't want to accidentally send, a JSON response 
+            from an API you're working with, notes from a meeting, your daily to-do list, etc.
+          </p>
+        </div>
+        <div class="image-container">
+          <picture>
+            <source srcset="img/dark/blocks.png" media="(prefers-color-scheme: dark)">
+            <img src="img/light/blocks.png" alt="Screenshot of blocks" class="image">
+          </picture>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="text">
+          <h3>Syntax highlighting and auto-format</h3>
+          <p>
+            Each block can have its own Language set (e.g. JavaScript, JSON, Markdown, etc.). 
+            You get syntax highlighting and you can auto-format blocks.
+          </p>
+          <p>
+            Heynote supports a range of different programming languages.
+          </p>
+        </div>
+        <div class="image-container">
+          <picture>
+            <source srcset="img/dark/languages.png" media="(prefers-color-scheme: dark)">
+            <img src="img/light/languages.png" alt="Screenshot of language selector" class="image">
+          </picture>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="text">
+          <h3>A calculator scratchpad</h3>
+          <p>
+            Math blocks are calculator scratch pads that can be used for simple calculations. 
+            They also supports variables as well as unit conversions, including currencies.
+          </p>
+        </div>
+        <div class="image-container">
+          <picture>
+            <source srcset="img/dark/math.png" media="(prefers-color-scheme: dark)">
+            <img src="img/light/math.png" alt="Screenshot of math block" class="image">
+          </picture>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="downloads" id="downloads">
+      <div class="container">
+        <h3>Downloads</h3>
+        <table cellspacing="0">
+          <tr>
+            <td data-label="Version">1.2.3 (latest)</td>
+            <td data-label="Mac">
+              <i class="icon apple"></i>
+              <a href="#">Mac Universal</a>
+              <a href="#">Mac Arm</a>
+              <a href="#">Mac Intel</a>
+            </td>
+            <td data-label="Windows">
+              <span style="white-space:nowrap;">
+                <i class="icon windows"></i>
+                <a href="#">Windows</a>
+              </span>
+            </td>
+            <td data-label="Linux">
+              <i class="icon linux"></i>
+              Coming soon™
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Version">1.2.2</td>
+            <td data-label="Mac">
+              <i class="icon apple"></i>
+              <a href="#">Mac Universal</a>
+              <a href="#">Mac Arm</a>
+              <a href="#">Mac Intel</a>
+            </td>
+            <td data-label="Windows">
+              <span style="white-space:nowrap;">
+                <i class="icon windows"></i>
+                <a href="#">Windows</a>
+              </span>
+            </td>
+            <td data-label="Linux"></td>
+          </tr>
+        </table>
+        <a href="https://github.com/heyman/heynote/releases/" class="all-releases">
+          All releases<i class="icon-external"></i>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <i class="author-icon"></i>
+      <span class="text">Created by <a href="https://heyman.info">Jonatan Heyman</a></span>
+    </footer>
+  </body>
+</html>
