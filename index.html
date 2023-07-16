@@ -64,7 +64,8 @@
           <h3>One buffer, many blocks</h3>
           <p>
             At it's core, Heynote is a large, persistent text buffer divided into blocks. 
-            Creating a new block is as easy as pressing Ctrl-Enter, and pressing Ctrl-A within 
+            Creating a new block is as easy as pressing <span class="key"><span class="cmd-key">⌘</span>-Enter</span>, 
+            and pressing <span class="key"><span class="cmd-key">⌘</span>-A</span> within 
             a block selects the content of just that block.
           </p>
           <p>
@@ -170,9 +171,11 @@
       if (window.navigator.platform.indexOf("Win") !== -1) {
         document.querySelector(".download-buttons .button.apple").style.display = "none";
         document.querySelector(".download-buttons .button.windows").style.display = "block";
+        document.querySelectorAll(".cmd-key").forEach((el) => el.innerHTML = "Ctrl");
       } else {
         document.querySelector(".download-buttons .button.apple").style.display = "block";
         document.querySelector(".download-buttons .button.windows").style.display = "none";
+        document.querySelectorAll(".cmd-key").forEach((el) => el.innerHTML = "⌘");
       }
     </script>
   </body>

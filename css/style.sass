@@ -66,6 +66,7 @@ $image-border-color-dark: #505050
     --apple-icon-url: url(../img/apple-black.svg)
     --windows-icon-url: url(../img/windows-black.svg)
     --linux-icon-url: url(../img/linux-black.svg)
+    --key-color: #e4e4e4
 
 @mixin dark-theme
     --body-bg: #{$body-bg-dark}
@@ -86,6 +87,7 @@ $image-border-color-dark: #505050
     --apple-icon-url: url(../img/apple.svg)
     --windows-icon-url: url(../img/windows.svg)
     --linux-icon-url: url(../img/linux.svg)
+    --key-color: #575757
 
 :root
     +light-theme
@@ -367,6 +369,13 @@ section.features
             p
                 line-height: 1.4em
                 margin-bottom: 0.8em
+            .key
+                white-space: nowrap
+                background: var(--key-color)
+                padding: 2px 4px
+                font-size: 14px
+                font-weight: 600
+                border-radius: 3px
         .image-container
             width: 50%
             +breakpoint(max-width 767px)
