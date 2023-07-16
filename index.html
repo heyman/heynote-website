@@ -24,9 +24,13 @@
 
           <div class="download-buttons">
             <div class="button-container">
-              <a href="#" class="button apple">
+              <a href="{{ releases[0].mac_universal }}" class="button apple">
                 Download
                 <span class="platform">Mac Universal</span>
+              </a>
+              <a href="{{ releases[0].mac_universal }}" class="button windows">
+                Download
+                <span class="platform">Windows</span>
               </a>
             </div>
 
@@ -117,44 +121,41 @@
       <div class="container">
         <h3>Downloads</h3>
         <table cellspacing="0">
-          <tr>
-            <td data-label="Version">1.2.3 (latest)</td>
-            <td data-label="Mac">
-              <i class="icon apple"></i>
-              <a href="#">Mac Universal</a>
-              <a href="#">Mac Arm</a>
-              <a href="#">Mac Intel</a>
-            </td>
-            <td data-label="Windows">
-              <span style="white-space:nowrap;">
-                <i class="icon windows"></i>
-                <a href="#">Windows</a>
-              </span>
-            </td>
-            <td data-label="Linux">
-              <i class="icon linux"></i>
-              Coming soon™
-            </td>
-          </tr>
-          <tr>
-            <td data-label="Version">1.2.2</td>
-            <td data-label="Mac">
-              <i class="icon apple"></i>
-              <a href="#">Mac Universal</a>
-              <a href="#">Mac Arm</a>
-              <a href="#">Mac Intel</a>
-            </td>
-            <td data-label="Windows">
-              <span style="white-space:nowrap;">
-                <i class="icon windows"></i>
-                <a href="#">Windows</a>
-              </span>
-            </td>
-            <td data-label="Linux"></td>
-          </tr>
+          {% for release in releases[:10] %}
+            <tr>
+              <td data-label="Version">{{ release.version }}{% if loop.first %} (latest){% endif %}</td>
+              <td data-label="Mac">
+                <i class="icon apple"></i>
+                {% if release.mac_universal %}
+                  <a href="{{ release.mac_universal }}">Mac Universal</a>
+                {% endif %}
+                {% if release.mac_arm %}
+                  <a href="{{ release.mac_arm }}">Mac Arm</a>
+                {% endif %}
+                {% if releaseIntel %}
+                  <a href="{{ release.mac_intel }}">Mac Intel</a>
+                {% endif %}
+              </td>
+              <td data-label="Windows">
+                <span style="white-space:nowrap;">
+                  <i class="icon windows"></i>
+                  {% if release.windows %}
+                    <a href="{{ release.windows }}">Windows</a>
+                  {% endif %}
+                </span>
+              </td>
+              <td data-label="Linux">
+                {% if loop.first %}
+                  <i class="icon linux"></i>
+                  Coming soon™
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
         </table>
+
         <a href="https://github.com/heyman/heynote/releases/" class="all-releases">
-          All releases<i class="icon-external"></i>
+          All releases ({{ releases|length }})<i class="icon-external"></i>
         </a>
       </div>
     </section>
@@ -163,5 +164,16 @@
       <i class="author-icon"></i>
       <span class="text">Created by <a href="https://heyman.info">Jonatan Heyman</a></span>
     </footer>
+
+    <script>
+      // select which download button to show in header
+      if (window.navigator.platform.indexOf("Win") !== -1) {
+        document.querySelector(".download-buttons .button.apple").style.display = "none";
+        document.querySelector(".download-buttons .button.windows").style.display = "block";
+      } else {
+        document.querySelector(".download-buttons .button.apple").style.display = "block";
+        document.querySelector(".download-buttons .button.windows").style.display = "none";
+      }
+    </script>
   </body>
 </html>
