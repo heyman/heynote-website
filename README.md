@@ -6,7 +6,7 @@
    make download_releases
    ````
 
-2. Generate website into ./_site
+2. Generate website into `./_site`
    
    ```
    make generate
