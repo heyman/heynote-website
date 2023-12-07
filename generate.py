@@ -19,6 +19,7 @@ with open("releases.json", "r") as f:
 
 
 releases = []
+prereleases = []
 for release in all_releases:
     if release["draft"]:
         continue
@@ -34,18 +35,23 @@ for release in all_releases:
     }
     for asset in release["assets"]:
         #print("-->", asset["name"])
-        if re.match(r"^Heynote_\d+\.\d+\.\d+_universal\.dmg$", asset["name"]):
+        if re.match(r"^Heynote_\d+\.\d+\.\d+(-beta|-alpha)?_universal\.dmg$", asset["name"]):
             release_data["mac_universal"] = asset["browser_download_url"]
-        elif re.match(r"^Heynote_\d+\.\d+\.\d+_arm64\.dmg$", asset["name"]):
+        elif re.match(r"^Heynote_\d+\.\d+\.\d+(-beta|-alpha)?_arm64\.dmg$", asset["name"]):
             release_data["mac_arm"] = asset["browser_download_url"]
-        elif re.match(r"^Heynote_\d+\.\d+\.\d+_x64\.dmg$", asset["name"]):
+        elif re.match(r"^Heynote_\d+\.\d+\.\d+(-beta|-alpha)?_x64\.dmg$", asset["name"]):
             release_data["mac_intel"] = asset["browser_download_url"]
-        elif re.match(r"^Heynote_\d+\.\d+\.\d+\.exe$", asset["name"]):
+        elif re.match(r"^Heynote_\d+\.\d+\.\d+(-beta|-alpha)?\.exe$", asset["name"]):
             release_data["windows"] = asset["browser_download_url"]
     
-    releases.append(release_data)
+    if release["prerelease"]:
+        prereleases.append(release_data)
+    else:
+        releases.append(release_data)
     #print(release_data)
 
-
 with open("./_site/index.html", "w") as f:
-    f.write(template.render(releases=releases))
+    f.write(template.render(
+        releases=releases,
+        prereleases=prereleases,
+    ))

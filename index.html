@@ -1,3 +1,39 @@
+{% macro release_table(releases) %}
+  <table cellspacing="0">
+    {% for release in releases[:10] %}
+      <tr>
+        <td data-label="Version">{{ release.version }}{% if loop.first %} (latest){% endif %}</td>
+        <td data-label="Mac">
+          <i class="icon apple"></i>
+          {% if release.mac_universal %}
+            <a href="{{ release.mac_universal }}">Mac Universal</a>
+          {% endif %}
+          {% if release.mac_arm %}
+            <a href="{{ release.mac_arm }}">Mac Arm</a>
+          {% endif %}
+          {% if release.mac_intel %}
+            <a href="{{ release.mac_intel }}">Mac Intel</a>
+          {% endif %}
+        </td>
+        <td data-label="Windows">
+          <span style="white-space:nowrap;">
+            <i class="icon windows"></i>
+            {% if release.windows %}
+              <a href="{{ release.windows }}">Windows</a>
+            {% endif %}
+          </span>
+        </td>
+        <td data-label="Linux">
+          {% if loop.first %}
+            <i class="icon linux"></i>
+            Coming soon™
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endmacro %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -121,39 +157,12 @@
     <section class="downloads" id="downloads">
       <div class="container">
         <h3>Downloads</h3>
-        <table cellspacing="0">
-          {% for release in releases[:10] %}
-            <tr>
-              <td data-label="Version">{{ release.version }}{% if loop.first %} (latest){% endif %}</td>
-              <td data-label="Mac">
-                <i class="icon apple"></i>
-                {% if release.mac_universal %}
-                  <a href="{{ release.mac_universal }}">Mac Universal</a>
-                {% endif %}
-                {% if release.mac_arm %}
-                  <a href="{{ release.mac_arm }}">Mac Arm</a>
-                {% endif %}
-                {% if release.mac_intel %}
-                  <a href="{{ release.mac_intel }}">Mac Intel</a>
-                {% endif %}
-              </td>
-              <td data-label="Windows">
-                <span style="white-space:nowrap;">
-                  <i class="icon windows"></i>
-                  {% if release.windows %}
-                    <a href="{{ release.windows }}">Windows</a>
-                  {% endif %}
-                </span>
-              </td>
-              <td data-label="Linux">
-                {% if loop.first %}
-                  <i class="icon linux"></i>
-                  Coming soon™
-                {% endif %}
-              </td>
-            </tr>
-          {% endfor %}
-        </table>
+        {{ release_table(releases) }}
+
+        <div class="beta-versions">
+          <h4>Beta Versions</h3>
+          {{ release_table(prereleases) }}
+        </div>
 
         <a href="https://github.com/heyman/heynote/releases/" class="all-releases">
           All releases ({{ releases|length }})<i class="icon-external"></i>
