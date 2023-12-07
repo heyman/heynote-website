@@ -1,8 +1,8 @@
-{% macro release_table(releases) %}
+{% macro release_table(releases, show_latest=True) %}
   <table cellspacing="0">
     {% for release in releases[:10] %}
       <tr>
-        <td data-label="Version">{{ release.version }}{% if loop.first %} (latest){% endif %}</td>
+        <td data-label="Version">{{ release.version }}{% if show_latest and loop.first %} (latest){% endif %}</td>
         <td data-label="Mac">
           <i class="icon apple"></i>
           {% if release.mac_universal %}
@@ -161,7 +161,7 @@
 
         <div class="beta-versions">
           <h4>Beta Versions</h3>
-          {{ release_table(prereleases) }}
+          {{ release_table(prereleases, show_latest=False) }}
         </div>
 
         <a href="https://github.com/heyman/heynote/releases/" class="all-releases">
