@@ -60,14 +60,38 @@
 
           <div class="download-buttons">
             <div class="button-container">
-              <a href="{{ releases[0].mac_universal }}" class="button apple">
-                Download
-                <span class="platform">Mac Universal</span>
-              </a>
-              <a href="{{ releases[0].mac_universal }}" class="button windows">
+              <div class="button-with-dropdown apple">
+                <a href="{{ releases[0].mac_universal }}" class="apple-icon">
+                  Download
+                  <span class="platform">Mac Universal</span>
+                </a>
+                <span class="dropdown-button"></span>
+                <div class="dropdown">
+                  <a href="{{ releases[0].mac_universal }}" class="apple-icon">Mac Universal</a>
+                  <a href="{{ releases[0].mac_arm }}" class="apple-icon">Mac Arm</a>
+                  <a href="{{ releases[0].mac_intel }}" class="apple-icon">Mac Intel</a>
+                  <a href="{{ releases[0].windows }}" class="windows-icon">Windows</a>
+                </div>
+              </div>
+
+              <div class="button-with-dropdown windows">
+                <a href="{{ releases[0].windows }}" class="windows-icon">
+                  Download
+                  <span class="platform">Windows</span>
+                </a>
+                <span class="dropdown-button"></span>
+                <div class="dropdown">
+                  <a href="{{ releases[0].windows }}" class="windows-icon">Windows</a>
+                  <a href="{{ releases[0].mac_universal }}" class="apple-icon">Mac Universal</a>
+                  <a href="{{ releases[0].mac_arm }}" class="apple-icon">Mac Arm</a>
+                  <a href="{{ releases[0].mac_intel }}" class="apple-icon">Mac Intel</a>
+                </div>
+              </div>
+
+              {#<a href="{{ releases[0].mac_universal }}" class="button windows">
                 Download
                 <span class="platform">Windows</span>
-              </a>
+              </a>#}
             </div>
 
             <a href="#downloads" class="more">More versions</a>
@@ -178,14 +202,23 @@
     <script>
       // select which download button to show in header
       if (window.navigator.platform.indexOf("Win") !== -1) {
-        document.querySelector(".download-buttons .button.apple").style.display = "none";
-        document.querySelector(".download-buttons .button.windows").style.display = "block";
+        document.querySelector(".download-buttons .apple").style.display = "none";
+        document.querySelector(".download-buttons .windows").style.display = "flex";
         document.querySelectorAll(".cmd-key").forEach((el) => el.innerHTML = "Ctrl");
       } else {
-        document.querySelector(".download-buttons .button.apple").style.display = "block";
-        document.querySelector(".download-buttons .button.windows").style.display = "none";
+        document.querySelector(".download-buttons .apple").style.display = "flex";
+        document.querySelector(".download-buttons .windows").style.display = "none";
         document.querySelectorAll(".cmd-key").forEach((el) => el.innerHTML = "⌘");
       }
+
+      // dropdown button
+      document.querySelectorAll(".button-with-dropdown").forEach((el) => {
+        el.querySelector(".dropdown-button").addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          el.classList.toggle("open");
+        });
+      });
     </script>
   </body>
 </html>
