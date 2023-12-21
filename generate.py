@@ -31,18 +31,24 @@ for release in all_releases:
         "mac_arm": None,
         "mac_intel": None,
         "windows": None,
-        "linux": None,
+        "linux_appimage": None,
+        "linux_snap": None,
     }
+    regex_first_part = r"^Heynote_\d+\.\d+\.\d+(-(beta|alpha)(\.\d*)?)?"
     for asset in release["assets"]:
         #print("-->", asset["name"])
-        if re.match(r"^Heynote_\d+\.\d+\.\d+(-(beta|alpha)\d*)?_universal\.dmg$", asset["name"]):
+        if re.match(regex_first_part + r"_universal\.dmg$", asset["name"]):
             release_data["mac_universal"] = asset["browser_download_url"]
-        elif re.match(r"^Heynote_\d+\.\d+\.\d+(-(beta|alpha)\d*)?_arm64\.dmg$", asset["name"]):
+        elif re.match(regex_first_part + r"_arm64\.dmg$", asset["name"]):
             release_data["mac_arm"] = asset["browser_download_url"]
-        elif re.match(r"^Heynote_\d+\.\d+\.\d+(-(beta|alpha)\d*)?_x64\.dmg$", asset["name"]):
+        elif re.match(regex_first_part + r"_x64\.dmg$", asset["name"]):
             release_data["mac_intel"] = asset["browser_download_url"]
-        elif re.match(r"^Heynote_\d+\.\d+\.\d+(-(beta|alpha)\d*)?\.exe$", asset["name"]):
+        elif re.match(regex_first_part + r"\.exe$", asset["name"]):
             release_data["windows"] = asset["browser_download_url"]
+        elif re.match(regex_first_part + r"_x86_64\.AppImage$", asset["name"]):
+            release_data["linux_appimage"] = asset["browser_download_url"]
+        elif re.match(regex_first_part + r"_amd64\.snap$", asset["name"]):
+            release_data["linux_snap"] = asset["browser_download_url"]
     
     if release["prerelease"]:
         prereleases.append(release_data)

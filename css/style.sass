@@ -128,7 +128,6 @@ header
     padding-top: 50px
     padding-bottom: 130px
     margin-bottom: 40px
-    overflow: hidden
     +breakpoint(max-width 1100px)
         padding-top: 20px
         margin-bottom: 20px
@@ -206,6 +205,7 @@ header
                 line-height: 1.08em
                 color: var(--headline-color)
                 margin-bottom: 38px
+                text-wrap: balance
                 +breakpoint(max-width 960px)
                     font-size: 42px
                     line-height: 1.2em
@@ -254,6 +254,12 @@ header
                                 background-repeat: no-repeat
                                 background-size: 18px
                                 background-position: 18px 50%
+                                padding-left: 48px
+                            &.linux-icon
+                                background-image: url(../img/linux.svg)
+                                background-repeat: no-repeat
+                                background-size: 19px
+                                background-position: 20px calc(50% - 2px)
                                 padding-left: 48px
                             .platform
                                 display: block
@@ -315,6 +321,13 @@ header
                                     background-position: 14px calc(50%)
                                     &:hover
                                         background-image: url(../img/windows.svg)
+                                &.linux-icon
+                                    background-image: var(--linux-icon-url)
+                                    background-repeat: no-repeat
+                                    background-size: 14px
+                                    background-position: 14px calc(50% - 1px)
+                                    &:hover
+                                        background-image: url(../img/linux.svg)
                         &.open 
                             .dropdown-button
                                 background-image: url(../img/up-arrow.svg)
@@ -498,8 +511,6 @@ section.downloads
                     font-weight: bold
                 &:last-child
                     border-right: 2px solid var(--table-line-color)
-                    // linux coming soon border fix:
-                    border-top: none
                 i.icon
                     display: inline-block
                     vertical-align: middle
@@ -529,8 +540,6 @@ section.downloads
                     border-top-left-radius: 3px
                 td:last-child
                     border-top-right-radius: 3px
-                    // linux coming soon border fix:
-                    border-top: 2px solid var(--table-line-color)
             tr:last-child 
                 td
                     border-bottom: 2px solid var(--table-line-color)
@@ -554,11 +563,11 @@ section.downloads
                         padding: 12px
                         padding-left: 90px
                         position: relative
+                        &:not(:has(a)):not(:first-child)
+                            // hide empty cells on mobile
+                            display: none
                         &:first-child
                             border-top: 2px solid var(--table-line-color)
-                        // linux coming soon
-                        &:last-child
-                            display: none
                         &::before
                             content: attr(data-label)
                             position: absolute
@@ -570,10 +579,6 @@ section.downloads
                             margin-top: 1px
                             opacity: 0.8
                             padding: 12px
-                    // Linux coming soon fix
-                    &:first-child td:last-child
-                        display: block
-                        border-top: none
             
         a.all-releases
             i.icon-external

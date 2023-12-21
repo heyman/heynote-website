@@ -24,9 +24,14 @@
           </span>
         </td>
         <td data-label="Linux">
-          {% if loop.first %}
+          {%if release.linux_appimage or release.linux_snap %}
             <i class="icon linux"></i>
-            Coming soon™
+            {% if release.linux_appimage %}
+              <a href="{{ release.linux_appimage }}">AppImage</a>
+            {% endif %}
+            {% if release.linux_snap %}
+              <a href="{{ release.linux_snap }}">Snap</a>
+            {% endif %}
           {% endif %}
         </td>
       </tr>
@@ -71,6 +76,7 @@
                   <a href="{{ releases[0].mac_arm }}" class="apple-icon">Mac Arm</a>
                   <a href="{{ releases[0].mac_intel }}" class="apple-icon">Mac Intel</a>
                   <a href="{{ releases[0].windows }}" class="windows-icon">Windows</a>
+                  <a href="{{ releases[0].linux_appimage }}" class="linux-icon">Linux AppImage</a>
                 </div>
               </div>
 
@@ -81,6 +87,22 @@
                 </a>
                 <span class="dropdown-button"></span>
                 <div class="dropdown">
+                  <a href="{{ releases[0].windows }}" class="windows-icon">Windows</a>
+                  <a href="{{ releases[0].mac_universal }}" class="apple-icon">Mac Universal</a>
+                  <a href="{{ releases[0].mac_arm }}" class="apple-icon">Mac Arm</a>
+                  <a href="{{ releases[0].mac_intel }}" class="apple-icon">Mac Intel</a>
+                  <a href="{{ releases[0].linux_appimage }}" class="linux-icon">Linux AppImage</a>
+                </div>
+              </div>
+
+              <div class="button-with-dropdown linux">
+                <a href="{{ releases[0].windows }}" class="linux-icon">
+                  Download
+                  <span class="platform">Linux AppImage</span>
+                </a>
+                <span class="dropdown-button"></span>
+                <div class="dropdown">
+                  <a href="{{ releases[0].linux_appimage }}" class="linux-icon">Linux AppImage</a>
                   <a href="{{ releases[0].windows }}" class="windows-icon">Windows</a>
                   <a href="{{ releases[0].mac_universal }}" class="apple-icon">Mac Universal</a>
                   <a href="{{ releases[0].mac_arm }}" class="apple-icon">Mac Arm</a>
@@ -201,13 +223,20 @@
 
     <script>
       // select which download button to show in header
-      if (window.navigator.platform.indexOf("Win") !== -1) {
+      const platform = window.navigator?.userAgentData?.platform || window.navigator.platform;
+      if (platform.indexOf("Win") !== -1) {
         document.querySelector(".download-buttons .apple").style.display = "none";
+        document.querySelector(".download-buttons .linux").style.display = "none";
         document.querySelector(".download-buttons .windows").style.display = "flex";
         document.querySelectorAll(".cmd-key").forEach((el) => el.innerHTML = "Ctrl");
+      } else if (platform.indexOf("Linux") !== -1) {
+        document.querySelector(".download-buttons .apple").style.display = "none";
+        document.querySelector(".download-buttons .windows").style.display = "none";
+        document.querySelector(".download-buttons .linux").style.display = "flex";
       } else {
         document.querySelector(".download-buttons .apple").style.display = "flex";
         document.querySelector(".download-buttons .windows").style.display = "none";
+        document.querySelector(".download-buttons .linux").style.display = "none";
         document.querySelectorAll(".cmd-key").forEach((el) => el.innerHTML = "⌘");
       }
 
