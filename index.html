@@ -233,6 +233,7 @@
         document.querySelector(".download-buttons .apple").style.display = "none";
         document.querySelector(".download-buttons .windows").style.display = "none";
         document.querySelector(".download-buttons .linux").style.display = "flex";
+        document.querySelectorAll(".cmd-key").forEach((el) => el.innerHTML = "Ctrl");
       } else {
         document.querySelector(".download-buttons .apple").style.display = "flex";
         document.querySelector(".download-buttons .windows").style.display = "none";
