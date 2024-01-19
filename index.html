@@ -49,6 +49,21 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/favicon-180.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16.png">
+
+
+    {% set share_description = "A dedicated scratchpad for developers." %}
+    {% set share_image = "https://heynote.com/img/share.png" %}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="https://heynote.com" />
+    <meta name="twitter:title" content="Heynote" />
+    <meta name="twitter:description" content="{{ share_description }}" />
+    <meta name="twitter:image" content="{{ share_image }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Heynote" />
+    <meta property="og:description" content="{{ share_description }}" />
+    <meta property="og:url" content="https://heynote.com" />
+    <meta property="og:image" content="{{ share_image }}" />
   </head>
   <body>
     <header>
