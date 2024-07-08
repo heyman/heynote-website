@@ -13,10 +13,12 @@ if (document.readyState !== 'loading') {
   document.addEventListener('DOMContentLoaded', () => setTheme(theme));
 }
 
-switchButton.addEventListener("click", (e) => {
-  e.preventDefault()
-  toggleTheme()
-});
+if (switchButton) {
+  switchButton.addEventListener("click", (e) => {
+    e.preventDefault()
+    toggleTheme()
+  });
+}
 
 function toggleTheme() {
   theme = theme === "light" ? "dark" : "light";

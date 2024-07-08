@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}Heynote{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <script async src="/js/theme-toggle.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/favicon-180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16.png">
+
+
+    {% set share_description = "A dedicated scratchpad for developers." %}
+    {% set share_image = "https://heynote.com/img/share.png" %}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="https://heynote.com" />
+    <meta name="twitter:title" content="Heynote" />
+    <meta name="twitter:description" content="{{ share_description }}" />
+    <meta name="twitter:image" content="{{ share_image }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Heynote" />
+    <meta property="og:description" content="{{ share_description }}" />
+    <meta property="og:url" content="https://heynote.com" />
+    <meta property="og:image" content="{{ share_image }}" />
+
+    {% block head_end %}{% endblock %}
+  </head>
+  <body class="{% block body_class %}{% endblock %}">
+    {% block content %}{% endblock %}
+
+    <footer>
+        <i class="author-icon"></i>
+        <span class="text">Created by <a href="https://heyman.info">Jonatan Heyman</a></span>
+    </footer>
+
+    {% block script %}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-N2E84G6JPV"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-N2E84G6JPV');
+        </script>
+    {% endblock %}
+  </body>
+</html>

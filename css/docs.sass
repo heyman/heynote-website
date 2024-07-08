@@ -1,0 +1,26 @@
+body.docs
+    header
+        background: var(--header-bg)
+        border-bottom: 7px solid var(--header-bg-line)
+        padding-top: 12px
+        padding-bottom: 12px
+        .container
+            +container
+            display: flex
+            .logo-links
+                margin-bottom: 0
+                ul.links
+                    padding: 0 20px
+                    +breakpoint(max-width 767px)
+                        text-align: left
+            .theme-toggle-container
+                flex-grow: 1
+                display: flex
+                justify-content: flex-end
+                align-items: center
+            
+    
+    section.content
+        +container
+        padding-top: 30px
+        padding-bottom: 30px

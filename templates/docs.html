@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Docs - Heynote{% endblock %}
+
+{% block head_end %}
+  <link rel="stylesheet" href="/css/github-markdown.css">
+{% endblock %}
+
+{% block body_class %}docs{% endblock %}
+
+{% block content %}
+  <header>
+    <div class="container">
+      <div class="logo-links">
+        <a href="/"><h1 class="logo">Heynote</h1></a>
+        <ul class="links">
+          {#<li><a href="/#downloads">Downloads</a></li>#}
+          <li class="active"><a href="/docs">Documentation</a></li>
+          <li>
+            <a href="https://github.com/heyman/heynote/">Source Code<i class="icon-github"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="theme-toggle-container">
+        <label for="theme-toggle-checkbox" class="theme-toggle" id="theme-toggle">
+          <input type="checkbox" class="checkbox" id="theme-toggle-checkbox" />
+          <div class="slider">
+            <div class="moon"></div>
+            <div class="sun"></div>
+          </div>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <section class="content markdown-body">
+    {{ docs_content|safe }}
+  </section>
+{% endblock %}
+
+

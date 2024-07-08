@@ -1,16 +1,15 @@
 import json
+import os
 import re
 
 from jinja2 import Environment, FileSystemLoader
 
 
 env = Environment(
-    loader=FileSystemLoader(".")
+    loader=FileSystemLoader("./templates")
 )
-template = env.get_template("index.html")
 
-
-with open("releases.json", "r") as f:
+with open("download/releases.json", "r") as f:
     all_releases = json.load(f)
 
 #print("count:", len(all_releases))
@@ -56,8 +55,23 @@ for release in all_releases:
         releases.append(release_data)
     #print(release_data)
 
+index_template = env.get_template("index.html")
+
 with open("./_site/index.html", "w") as f:
-    f.write(template.render(
+    f.write(index_template.render(
         releases=releases,
         prereleases=prereleases,
+    ))
+
+if not os.path.exists("./_site/docs"):
+    os.makedirs("./_site/docs")
+
+
+docs_template = env.get_template("docs.html")
+with open("download/docs.html", "r") as f:
+    docs_content = f.read()
+
+with open("./_site/docs/index.html", "w") as f:
+    f.write(docs_template.render(
+        docs_content=docs_content,
     ))
