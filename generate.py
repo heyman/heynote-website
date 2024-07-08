@@ -1,8 +1,15 @@
+import hashlib
 import json
 import os
 import re
 
 from jinja2 import Environment, FileSystemLoader
+
+def file_hash_10_char(file_path):
+    with open(file_path, 'rb') as f:
+        file_data = f.read()
+    hash_object = hashlib.sha256(file_data)
+    return hash_object.hexdigest()[:10]
 
 
 env = Environment(
@@ -55,12 +62,16 @@ for release in all_releases:
         releases.append(release_data)
     #print(release_data)
 
+css_hash = file_hash_10_char("./_site/css/style.css")
+
+
 index_template = env.get_template("index.html")
 
 with open("./_site/index.html", "w") as f:
     f.write(index_template.render(
         releases=releases,
         prereleases=prereleases,
+        css_hash=css_hash,
     ))
 
 if not os.path.exists("./_site/docs"):
@@ -74,4 +85,5 @@ with open("download/docs.html", "r") as f:
 with open("./_site/docs/index.html", "w") as f:
     f.write(docs_template.render(
         docs_content=docs_content,
+        css_hash=css_hash,
     ))
