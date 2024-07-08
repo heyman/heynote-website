@@ -31,7 +31,7 @@ jobs:
       - name: Install and Build
         run: |
           pip install -r requirements.txt
-          make download_releases generate
+          make download_content generate
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

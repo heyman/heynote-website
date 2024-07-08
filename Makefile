@@ -1,4 +1,4 @@
-download_releases:
+download_content:
 	mkdir -p download
 	gh api /repos/heyman/heynote/releases > download/releases.json
 	curl 'https://raw.githubusercontent.com/heyman/heynote/main/docs/index.md' > download/docs.md
@@ -8,9 +8,6 @@ download_releases:
 		-H "X-GitHub-Api-Version: 2022-11-28" \
 		/markdown \
 		-f "text=$$(cat download/docs.md)" > download/docs.html
-
-
-
 
 generate:
 	rm -rf ./_site

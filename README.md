@@ -1,9 +1,9 @@
 # Build website
 
-1. Download releases using Github CLI tool (gh)
+1. Download content using Github CLI tool (gh)
    
    ```
-   make download_releases
+   make download_content
    ````
 
 2. Generate website into `./_site`
