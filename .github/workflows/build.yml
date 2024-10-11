@@ -30,7 +30,7 @@ jobs:
 
       - name: Install and Build
         run: |
-          pip install -r requirements.txt
+          pip install --break-system-packages -r requirements.txt
           make download_content generate
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
