@@ -75,7 +75,7 @@ with open("./_site/index.html", "w") as f:
     ))
 
 if not os.path.exists("./_site/docs"):
-    os.makedirs("./_site/docs")
+    os.makedirs("./_site/docs/changelog")
 
 
 docs_template = env.get_template("docs.html")
@@ -85,5 +85,16 @@ with open("download/docs.html", "r") as f:
 with open("./_site/docs/index.html", "w") as f:
     f.write(docs_template.render(
         docs_content=docs_content,
+        css_hash=css_hash,
+    ))
+
+# changelog
+changelog_template = env.get_template("changelog.html")
+with open("download/changelog.html", "r") as f:
+    changelog_content = f.read()
+
+with open("./_site/docs/changelog/index.html", "w") as f:
+    f.write(changelog_template.render(
+        changelog_content=changelog_content,
         css_hash=css_hash,
     ))
