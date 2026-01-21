@@ -8,13 +8,13 @@ download_content:
 		-H "Accept: application/vnd.github+json" \
 		-H "X-GitHub-Api-Version: 2022-11-28" \
 		/markdown \
-		-f "text=$$(cat download/docs.md)" > download/docs.html
+		-f "mode=gfm" -f "context=heyman/heynote" -f "text=$$(cat download/docs.md)" > download/docs.html
 	gh api \
 		--method POST \
 		-H "Accept: application/vnd.github+json" \
 		-H "X-GitHub-Api-Version: 2022-11-28" \
 		/markdown \
-		-f "text=$$(cat download/changelog.md)" > download/changelog.html
+		-f "mode=gfm" -f "context=heyman/heynote" -f "text=$$(cat download/changelog.md)" > download/changelog.html
 
 generate:
 	rm -rf ./_site
